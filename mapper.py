@@ -12,8 +12,6 @@ import sys
 import json
 import hashlib
 
-MAX_RAINBOW = 10**9
-
 def old_hash(raw_str):
   # TODO: do that thing you do
   h = hashlib.md5()
@@ -26,11 +24,11 @@ for line in sys.stdin:
   # we either got a bare numeric string, or we got a tuple.
   if "," in line:
     # split and clean up some more
-    record_id,hash0 = map(lambda x: x.strip(), line.split(",", 1))
+    record_id,old_hashed = map(lambda x: x.strip(), line.split(",", 1))
     # tab is magic; reducer will get values grouped by the stuff before the first tab.
-    print "%s\t%s" % (hash0, json.dumps({"record_id": record_id}))
+    print "%s\t%s" % (old_hashed, json.dumps({"record_id": record_id}))
   else:
     # bare numeric string? should probably validate that, but meh.
     raw = line.strip()
-    hash0 = old_hash(raw)
-    print "%s\t%s" % (hash0, json.dumps({"raw": raw}))
+    old_hashed = old_hash(raw)
+    print "%s\t%s" % (old_hashed, json.dumps({"raw": raw}))

@@ -9,8 +9,6 @@
 import sys
 import json
 
-MAX_RAINBOW = 9
-
 # input comes from STDIN (standard input)
 # it's like <record_id>,<hash> or it's a raw ssn.
 for line in sys.stdin:
